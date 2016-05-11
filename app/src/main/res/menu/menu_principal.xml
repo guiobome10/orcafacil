@@ -1,0 +1,29 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="br.com.jgsi.orcafacil.PrincipalActivity" >
+    <item android:id="@+id/conta"
+        android:title="@string/conta"
+        android:icon="@drawable/conta"
+        android:showAsAction="always"
+         />
+    <item android:id="@+id/receita"
+        android:title="@string/receita"
+        android:icon="@drawable/receita"
+        android:showAsAction="always"
+        />
+    <item android:id="@+id/orcamento"
+        android:title="@string/orcamento"
+        android:icon="@drawable/orcamento"
+        android:showAsAction="always" />
+    <item android:id="@+id/despesa"
+        android:title="@string/despesa"
+        android:icon="@drawable/despesa"
+        android:showAsAction="always" />
+    <item android:id="@+id/cartao_de_credito"
+        android:title="@string/cartao_de_credito"
+        android:icon="@drawable/cartao"
+        android:showAsAction="always" />
+    <!--<item android:id="@+id/categoria"-->
+        <!--android:title="@string/categoria"-->
+        <!--app:showAsAction="always" />-->
+</menu>

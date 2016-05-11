@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="br.com.jgsi.orcafacil" >
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/dinheiro_homem"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Base.ThemeOverlay.AppCompat.ActionBar" >
+        <activity
+            android:name=".PrincipalActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:icon="@drawable/conta"
+            android:name=".activities.ContaActivity"
+            android:label="@string/conta" />
+        <activity
+            android:icon="@drawable/receita"
+            android:name=".activities.ReceitaActivity"
+            android:label="@string/receita" />
+
+        <activity
+            android:icon="@drawable/receita"
+            android:name=".activities.CategoriaReceitaActivity"
+            android:label="@string/categoria_receita" />
+
+        <activity
+            android:icon="@drawable/orcamento"
+            android:name=".activities.OrcamentoActivity"
+            android:label="@string/orcamento" />
+
+        <activity
+            android:icon="@drawable/despesa"
+            android:name=".activities.CategoriaDespesaActivity"
+            android:label="@string/categoria_despesa" />
+        <activity
+            android:icon="@drawable/despesa"
+            android:name=".activities.DespesaActivity"
+            android:label="@string/despesa" />
+
+        <activity
+            android:icon="@drawable/despesa"
+            android:name=".activities.FormDespesaActivity"
+            android:label="@string/despesa" />
+
+        <activity
+            android:icon="@drawable/cartao"
+            android:name=".activities.CartaoDeCreditoActivity"
+            android:label="@string/cartao_de_credito" />
+        <activity
+            android:icon="@drawable/cartao"
+            android:name=".activities.FaturaActivity"
+            android:label="@string/fatura" />
+        <activity
+            android:icon="@drawable/cartao"
+            android:name=".activities.DespesaCartaoActivity"
+            android:label="@string/despesa_cartao" />
+
+    </application>
+
+</manifest>

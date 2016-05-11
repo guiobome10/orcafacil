@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/campo_erro"
+            android:visibility="invisible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:src="@drawable/sem_imagem"
+            android:layout_marginBottom="20dp"
+            android:id="@+id/orcamento_form_categoria"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:digits="0123456789.,"
+            android:inputType="numberDecimal"
+            android:id="@+id/orcamento_form_valor"
+            android:hint="@string/hint_valor_orcamento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Spinner
+            android:id="@+id/orcamento_form_periodicidade"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/orcamento_form_data_fim"
+            android:hint="@string/hint_data_fim_orcamento"
+            android:visibility="invisible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ToggleButton
+                android:id="@+id/orcamento_form_repetir"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/orcamento_form_quantidade_repeticoes"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/orcamento_form_repetir"
+                android:digits="0123456789"
+                android:inputType="number"
+                android:maxLength="2"
+                android:hint="@string/hint_quantidade_repeticoes"
+                android:visibility="invisible"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:layout_alignParentBottom="true"
+        android:text="@string/salvar"
+        android:id="@+id/btn_salvar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</RelativeLayout>

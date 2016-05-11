@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fatura_form_cartao"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        />
+
+    <EditText
+        android:id="@+id/fatura_form_data_inicio_ciclo"
+        android:inputType="date"
+        android:maxLength="10"
+        android:layout_marginBottom="20dp"
+        android:hint="@string/hint_data_inicio_ciclo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/fatura_form_data_final_ciclo"
+        android:inputType="date"
+        android:maxLength="10"
+        android:layout_marginBottom="20dp"
+        android:hint="@string/hint_data_final_ciclo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/fatura_form_data_vencimento"
+        android:inputType="date"
+        android:maxLength="10"
+        android:layout_marginBottom="20dp"
+        android:hint="@string/hint_data_vencimento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLength="8"
+        android:digits="0123456789,."
+        android:inputType="numberDecimal"
+        android:hint="@string/hint_valor_fatura"
+        android:id="@+id/fatura_form_valor"
+        android:layout_marginBottom="20dp"
+        />
+
+    <Button
+        android:layout_alignParentBottom="true"
+        android:text="@string/salvar"
+        android:id="@+id/btn_salvar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

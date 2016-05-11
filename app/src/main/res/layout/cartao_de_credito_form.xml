@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cartao_form_conta"
+        android:layout_marginBottom="20dp"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLength="4"
+        android:digits="0123456789"
+        android:inputType="number"
+        android:hint="@string/hint_ultimos_quatro_digitos"
+        android:id="@+id/cartao_form_quatro_ultimos_digitos"
+        android:layout_marginBottom="20dp"
+        />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cartao_form_bandeira"
+        android:layout_marginBottom="20dp"
+        />
+
+    <Button
+        android:layout_alignParentBottom="true"
+        android:text="@string/salvar"
+        android:id="@+id/btn_salvar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
