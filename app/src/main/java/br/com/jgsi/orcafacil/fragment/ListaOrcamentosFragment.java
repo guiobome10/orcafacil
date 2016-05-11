@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.Calendar;
 import java.util.List;
@@ -25,6 +26,8 @@ import br.com.jgsi.orcafacil.dao.OrcamentoDAO;
 import br.com.jgsi.orcafacil.dao.OrcamentoDAO;
 import br.com.jgsi.orcafacil.model.Orcamento;
 import br.com.jgsi.orcafacil.model.Orcamento;
+import br.com.jgsi.orcafacil.util.DateFormatter;
+import br.com.jgsi.orcafacil.util.DateUtil;
 
 /**
  * Created by guilherme.costa on 28/01/2016.
@@ -36,6 +39,15 @@ public class ListaOrcamentosFragment extends Fragment {
     private OrcamentoDAO dao;
     private List<Orcamento> orcamentos;
     private Orcamento orcamento;
+    private Button novoOrcamento;
+    private TextView dataListada;
+    private Calendar dataInicio;
+    private Calendar dataFim;
+
+    public ListaOrcamentosFragment() {
+        this.dataInicio = DateUtil.dataInicioMesAtual();
+        this.dataFim = DateUtil.dataFimMesAtual();
+    }
 
     @Nullable
     @Override
@@ -44,7 +56,7 @@ public class ListaOrcamentosFragment extends Fragment {
 
         activity = (OrcamentoActivity)getActivity();
 
-        Button novoOrcamento = (Button) layout.findViewById(R.id.btn_novo_orcamento);
+        novoOrcamento = (Button) layout.findViewById(R.id.btn_novo_orcamento);
 
         novoOrcamento.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,8 +65,15 @@ public class ListaOrcamentosFragment extends Fragment {
             }
         });
 
+        dataListada = (TextView) layout.findViewById(R.id.data_lista);
+
         listaOrcamentos = (ListView) layout.findViewById(R.id.orcamentos);
         registerForContextMenu(listaOrcamentos);
+
+        if(getArguments().getString("dataListada") != null){
+            dataInicio = DateFormatter.formataAnoMesDia(getArguments().getString("dataListada"));
+            dataFim = DateUtil.ultimoDiaMes(dataInicio);
+        }
         carregaLista();
 
         listaOrcamentos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -78,8 +97,9 @@ public class ListaOrcamentosFragment extends Fragment {
     }
 
     private void carregaLista() {
+        setDataListada();
         dao = new OrcamentoDAO(activity);
-        orcamentos = dao.getLista();
+        orcamentos = dao.getListaPeriodo(dataInicio, dataFim);
         OrcamentoAdapter adapter = new OrcamentoAdapter(orcamentos, activity);
         listaOrcamentos.setAdapter(adapter);
     }
@@ -110,5 +130,10 @@ public class ListaOrcamentosFragment extends Fragment {
         });
 
         super.onCreateContextMenu(menu, v, menuInfo);
+    }
+
+
+    private void setDataListada() {
+        dataListada.setText(DateFormatter.formataMesDia(dataInicio).toUpperCase());
     }
 }

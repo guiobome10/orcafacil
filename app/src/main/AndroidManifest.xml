@@ -62,6 +62,10 @@
             android:icon="@drawable/cartao"
             android:name=".activities.DespesaCartaoActivity"
             android:label="@string/despesa_cartao" />
+        <activity
+            android:icon="@drawable/cartao"
+            android:name=".activities.DataBindingActivity"
+            android:label="@string/data_binding" />
 
     </application>
 

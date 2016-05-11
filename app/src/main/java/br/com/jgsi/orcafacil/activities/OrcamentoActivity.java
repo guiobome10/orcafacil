@@ -29,12 +29,12 @@ public class OrcamentoActivity extends FragmentActivity {
 
     @Override
     protected void onResume() {
+        super.onResume();
         if(getIntent().getStringExtra(getResources().getString(R.string.orcamento)) == null){
             listaOrcamentos();
         } else {
             novoOrcamento();
         }
-        super.onResume();
     }
 
     public void listaOrcamentos() {

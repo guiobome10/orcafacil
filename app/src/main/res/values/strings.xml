@@ -77,5 +77,6 @@
     <string name="receitas">Receitas: </string>
     <string name="despesas">Despesas: </string>
     <string name="hint_quantidade_repeticoes">Informe a quantidade de repetições</string>
+    <string name="data_binding">Data binding</string>
 
 </resources>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="mydatabindinghelper"
+            type="br.com.jgsi.orcafacil.helper.MyDataBindingHelper"/>
+    </data>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="UnBound"
+            android:id="@+id/textViewUnBound"
+            android:layout_marginTop="72dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{mydatabindinghelper.message}"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            />
+    </LinearLayout>
+</layout>

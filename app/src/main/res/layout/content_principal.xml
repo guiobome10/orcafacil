@@ -143,5 +143,10 @@
                 android:layout_height="wrap_content" />
         </RelativeLayout>
 
+        <Button
+            android:id="@+id/botao_data_binding"
+            android:text="Data binding example"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 </FrameLayout>

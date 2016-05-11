@@ -94,6 +94,7 @@ public interface Statements extends Tabelas {
             + "OR (ORCAMENTO.data_inicio <=?2 AND ORCAMENTO.data_inicio >=?3 ) "
             + "OR (ORCAMENTO.data_fim >=?2 AND ORCAMENTO.data_fim <=?3 ) "
             + "OR (ORCAMENTO.data_fim >=?2 AND ORCAMENTO.data_inicio <=?3 )) " + ORDER_BY_DATA_ORCAMENTO;
+    String SELECT_ALL_ORCAMENTOS_POR_DATA = SELECT_ALL_ORCAMENTOS.replaceAll(";", " ") + "WHERE ORCAMENTO.data_inicio <=?1 AND ORCAMENTO.data_fim >=?2 " + ORDER_BY_DATA_ORCAMENTO;
 
     String SELECT_ALL_CARTOES_DE_CREDITO =
             "SELECT  CARTAO_DE_CREDITO.id, " +

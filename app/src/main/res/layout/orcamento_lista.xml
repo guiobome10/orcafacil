@@ -3,7 +3,19 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/data_lista"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:shadowColor="@android:color/darker_gray"
+        android:shadowRadius="5"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
     <ListView
+        android:layout_marginTop="30dp"
         android:id="@+id/orcamentos"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

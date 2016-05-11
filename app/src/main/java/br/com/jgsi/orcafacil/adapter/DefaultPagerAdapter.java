@@ -25,7 +25,7 @@ public abstract class DefaultPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        Fragment f = getNewFragment();
+        fragment = getNewFragment();
         Bundle args = new Bundle();
         args.putString("dataListada", DateFormatter.formataAnoMesDia(DateUtil.addMonthToDate(DEFAULT_ITEM, position - getCentralItemPosition())));
         fragment.setArguments(args);

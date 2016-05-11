@@ -18,8 +18,6 @@ import br.com.jgsi.orcafacil.util.DateUtil;
 public class DespesaPagerAdapter extends DefaultPagerAdapter {
 
 
-    public static final Calendar DEFAULT_ITEM = DateUtil.dataInicioMesAtual();
-
     public DespesaPagerAdapter(FragmentManager fm) {
         super(fm);
     }

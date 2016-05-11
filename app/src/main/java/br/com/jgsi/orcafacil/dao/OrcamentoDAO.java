@@ -139,4 +139,22 @@ public class OrcamentoDAO {
         }
         return orcamentos;
     }
+
+    public List<Orcamento> getListaPeriodo(Calendar dataInicio, Calendar dataFim) {
+        Cursor cursor = dao.exeqQuery(Statements.SELECT_ALL_ORCAMENTOS_POR_DATA,
+                new String[]{DateFormatter.formataAnoMesDia(dataInicio), DateFormatter.formataAnoMesDia(dataFim)});
+        List<Orcamento> orcamentos = new ArrayList<Orcamento>();
+        carregaListaDoCursor(cursor, orcamentos);
+        cursor.close();
+        return orcamentos;
+
+    }
+
+    private void carregaListaDoCursor(Cursor cursor, List<Orcamento> orcamentos) {
+        while(!cursor.isAfterLast()){
+            Orcamento orcamento = new Orcamento();
+            pegaDadosCursor(cursor, orcamento);
+            orcamentos.add(orcamento);
+        }
+    }
 }

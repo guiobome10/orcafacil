@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -14,6 +15,7 @@ import java.util.List;
 
 import br.com.jgsi.orcafacil.activities.CartaoDeCreditoActivity;
 import br.com.jgsi.orcafacil.activities.ContaActivity;
+import br.com.jgsi.orcafacil.activities.DataBindingActivity;
 import br.com.jgsi.orcafacil.activities.DespesaActivity;
 import br.com.jgsi.orcafacil.activities.OrcamentoActivity;
 import br.com.jgsi.orcafacil.activities.ReceitaActivity;
@@ -49,6 +51,14 @@ public class PrincipalActivity extends FragmentActivity {
         totalReceita = (TextView) findViewById(R.id.total_receita);
         totalDespesa = (TextView) findViewById(R.id.total_despesa);
         saldoDespesaXReceita = (TextView) findViewById(R.id.saldo_despesa_x_receita);
+        Button botaoDataBinding = (Button) findViewById(R.id.botao_data_binding);
+        botaoDataBinding.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent irParaDataBindingActivity = new Intent(PrincipalActivity.this, DataBindingActivity.class);
+                startActivity(irParaDataBindingActivity);
+            }
+        });
     }
 
     @Override
