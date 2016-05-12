@@ -78,5 +78,6 @@
     <string name="despesas">Despesas: </string>
     <string name="hint_quantidade_repeticoes">Informe a quantidade de repetições</string>
     <string name="data_binding">Data binding</string>
+    <string name="orcamento_erro_salvar">Erro ao salvar orçamento</string>
 
 </resources>

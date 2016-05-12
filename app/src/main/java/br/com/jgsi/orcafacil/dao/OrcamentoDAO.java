@@ -50,8 +50,18 @@ public class OrcamentoDAO {
         return orcamentos;
     }
 
-    public void inserir(Orcamento orcamento){
-        dao.inserir(Tabelas.TB_ORCAMENTO_NAME, toContentValues(orcamento));
+    public long inserir(Orcamento orcamento){
+        if(!existeOrcamento(orcamento)){
+             orcamento.setId(dao.inserir(Tabelas.TB_ORCAMENTO_NAME, toContentValues(orcamento)));
+            return orcamento.getId();
+        }
+        return -1;
+    }
+
+    private boolean existeOrcamento(Orcamento orcamento) {
+        List<Orcamento> orcamentoList = getByPeriodoCategoriaComInterseccoes(orcamento.getDataInicio(), orcamento.getDataFim(), orcamento.getCategoria());
+        return orcamentoList == null ? true
+                : !orcamentoList.isEmpty() ;
     }
 
     public void inserirLista(List<Orcamento> orcamentos){
@@ -84,7 +94,10 @@ public class OrcamentoDAO {
     public Orcamento getByCategoriaDataDespesa(Categoria categoriaSelecionada, Despesa despesa) {
         if(categoriaSelecionada == null) return null;
         if(despesa == null) return null;
-        Cursor cursor = dao.exeqQuery(Statements.SELECT_ORCAMENTO_BY_CATEG_DATA_ORDENADO_DATA, new String[]{ categoriaSelecionada.getId().toString(), DateFormatter.formataAnoMesDia(despesa.getData()), DateFormatter.formataAnoMesDia(despesa.getData())});
+        Cursor cursor = dao.exeqQuery(Statements.SELECT_ORCAMENTO_BY_CATEG_DATA_ORDENADO_DATA,
+                new String[]{ DateFormatter.formataAnoMesDia(despesa.getData())
+                        , DateFormatter.formataAnoMesDia(despesa.getData())
+                        , categoriaSelecionada.getId().toString()});
         List<Orcamento> orcamentos = new ArrayList<Orcamento>();
         while(cursor.moveToNext()){
             Orcamento orcamento = new Orcamento();
@@ -97,9 +110,9 @@ public class OrcamentoDAO {
 
     public Orcamento getByCategoriaDataDespesaCartao(CategoriaDespesa categoriaDespesa, DespesaCartao despesaCartao) {
         Cursor cursor = dao.exeqQuery(Statements.SELECT_ORCAMENTO_BY_CATEG_DATA_ORDENADO_DATA
-                , new String[]{ categoriaDespesa.getId().toString()
+                , new String[]{ DateFormatter.formataAnoMesDia(despesaCartao.getData())
                               , DateFormatter.formataAnoMesDia(despesaCartao.getData())
-                              , DateFormatter.formataAnoMesDia(despesaCartao.getData())});
+                              , categoriaDespesa.getId().toString() });
         List<Orcamento> orcamentos = new ArrayList<Orcamento>();
         while(cursor.moveToNext()){
             Orcamento orcamento = new Orcamento();
@@ -128,10 +141,10 @@ public class OrcamentoDAO {
 
     public List<Orcamento> getByPeriodoCategoriaComInterseccoes(Calendar dataInicio, Calendar dataFim, CategoriaDespesa categoria) {
         List<Orcamento> orcamentos = new ArrayList<Orcamento>();
-        Cursor cursor = dao.exeqQuery(Statements.SELECT_ORCAMENTO_BY_CATEG_DATA_COM_INTERSECCOES
-                , new String[]{ categoria.getId().toString()
-                              ,DateFormatter.formataAnoMesDia(dataInicio)
-                              ,DateFormatter.formataAnoMesDia(dataFim) });
+        Cursor cursor = dao.exeqQuery(Statements.SELECT_ORCAMENTO_BY_CATEG_DATA_COM_INTERSECCOES_ORDERNADO_DATA
+                , new String[]{ DateFormatter.formataAnoMesDia(dataInicio)
+                              ,DateFormatter.formataAnoMesDia(dataFim)
+                              , categoria.getId().toString() });
         while (cursor.moveToNext()){
             Orcamento orcamento = new Orcamento();
             pegaDadosCursor(cursor, orcamento);
@@ -141,20 +154,17 @@ public class OrcamentoDAO {
     }
 
     public List<Orcamento> getListaPeriodo(Calendar dataInicio, Calendar dataFim) {
-        Cursor cursor = dao.exeqQuery(Statements.SELECT_ALL_ORCAMENTOS_POR_DATA,
+        Cursor cursor = dao.exeqQuery(Statements.SELECT_ALL_ORCAMENTOS_POR_DATA_COM_INTERSECCOES_ORDENADO_DATA,
                 new String[]{DateFormatter.formataAnoMesDia(dataInicio), DateFormatter.formataAnoMesDia(dataFim)});
         List<Orcamento> orcamentos = new ArrayList<Orcamento>();
-        carregaListaDoCursor(cursor, orcamentos);
+        while (cursor.moveToNext()){
+            Orcamento orcamento = new Orcamento();
+            pegaDadosCursor(cursor, orcamento);
+            orcamentos.add(orcamento);
+        }
         cursor.close();
         return orcamentos;
 
     }
 
-    private void carregaListaDoCursor(Cursor cursor, List<Orcamento> orcamentos) {
-        while(!cursor.isAfterLast()){
-            Orcamento orcamento = new Orcamento();
-            pegaDadosCursor(cursor, orcamento);
-            orcamentos.add(orcamento);
-        }
-    }
 }

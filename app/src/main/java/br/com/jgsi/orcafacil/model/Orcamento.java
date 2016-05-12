@@ -163,4 +163,8 @@ public class Orcamento implements Serializable, Cloneable {
             return null;
         }
     }
+
+    public String getPeriodo() {
+        return "Período: " + getDataInicioFormatada() + " à " + getDataFormatada();
+    }
 }

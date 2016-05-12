@@ -22,13 +22,13 @@ public class DateUtil {
 
     public static Calendar dataInicioMesAtual() {
         Calendar data = Calendar.getInstance();
-        data.set(Calendar.DAY_OF_MONTH, data.getMinimum(Calendar.DAY_OF_MONTH));
+        data.set(Calendar.DAY_OF_MONTH, data.getActualMinimum(Calendar.DAY_OF_MONTH));
         return data;
     }
 
     public static Calendar dataFimMesAtual() {
         Calendar data = Calendar.getInstance();
-        data.set(Calendar.DAY_OF_MONTH, data.getMaximum(Calendar.DAY_OF_MONTH));
+        data.set(Calendar.DAY_OF_MONTH, data.getActualMaximum(Calendar.DAY_OF_MONTH));
         return data;
     }
 
@@ -42,7 +42,7 @@ public class DateUtil {
 
     public static Calendar ultimoDiaMes(Calendar data) {
         Calendar dataRetorno = (Calendar) data.clone();
-        dataRetorno.set(Calendar.DAY_OF_MONTH, dataRetorno.getMaximum(Calendar.DAY_OF_MONTH));
+        dataRetorno.set(Calendar.DAY_OF_MONTH, dataRetorno.getActualMaximum(Calendar.DAY_OF_MONTH));
         return dataRetorno;
     }
 }

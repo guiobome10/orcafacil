@@ -37,6 +37,11 @@
             android:label="@string/orcamento" />
 
         <activity
+            android:icon="@drawable/orcamento"
+            android:name=".activities.FormOrcamentoActivity"
+            android:label="@string/orcamento" />
+
+        <activity
             android:icon="@drawable/despesa"
             android:name=".activities.CategoriaDespesaActivity"
             android:label="@string/categoria_despesa" />

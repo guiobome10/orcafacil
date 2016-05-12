@@ -25,6 +25,7 @@ import java.util.List;
 
 import br.com.jgsi.orcafacil.R;
 import br.com.jgsi.orcafacil.activities.CategoriaDespesaActivity;
+import br.com.jgsi.orcafacil.activities.FormOrcamentoActivity;
 import br.com.jgsi.orcafacil.activities.OrcamentoActivity;
 import br.com.jgsi.orcafacil.adapter.CategoriaIconesAdapter;
 import br.com.jgsi.orcafacil.dao.CategoriaDespesaDAO;
@@ -48,7 +49,7 @@ public class FormOrcamentosFragment extends Fragment {
 
     private static final int CATEGORIA_DESPESA_REQUEST_CODE = 1;
     private Orcamento orcamento;
-    private OrcamentoActivity activity;
+    private FormOrcamentoActivity activity;
     private ImageView campoCategoria;
     private EditText campoValor;
     private EditText campoDataFim;
@@ -75,7 +76,7 @@ public class FormOrcamentosFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.orcamento_form, null);
 
-        activity = (OrcamentoActivity) getActivity();
+        activity = (FormOrcamentoActivity) getActivity();
 
         campoValor = (EditText) layout.findViewById(R.id.orcamento_form_valor);
 
@@ -131,27 +132,30 @@ public class FormOrcamentosFragment extends Fragment {
 
     private void salvar() {
         helper = new FormularioHelper(activity, R.layout.orcamento_form);
+        orcamento = helper.pegaDadosForm(orcamento);
         if(helper.validaFormOrcamento(activity, orcamento)){
-            orcamento = helper.pegaDadosForm(orcamento);
             orcamentoDAO = new OrcamentoDAO(activity);
             if(orcamento.getId() == null){
                 orcamentoDAO.inserir(orcamento);
-                if(!orcamento.getPeriodicidade().equals(Periodicidade.PERZONALIZADA)){
-                    pegaQuantidadeRepeticoesDoForm();
-                    if(quantidadeRepeticoes > 0){
-                        orcamentoDAO.inserirLista(OrcamentoFactory.criarListaDeOrcamentosParaRepeticoesDo(orcamento, quantidadeRepeticoes));
+                if(orcamento.getId() != null){
+                    if(!orcamento.getPeriodicidade().equals(Periodicidade.PERZONALIZADA)){
+                        pegaQuantidadeRepeticoesDoForm();
+                        if(quantidadeRepeticoes > 0){
+                            orcamentoDAO.inserirLista(OrcamentoFactory.criarListaDeOrcamentosParaRepeticoesDo(orcamento, quantidadeRepeticoes));
+                        }
                     }
                 }
             } else {
                 orcamentoDAO.atualizar(orcamento);
             }
             Toast.makeText(activity, R.string.orcamento_salvo, Toast.LENGTH_LONG).show();
-            activity.listaOrcamentos();
+            activity.lista();
         }
     }
 
     private void pegaQuantidadeRepeticoesDoForm() {
-        quantidadeRepeticoes = Integer.valueOf(campoQuantidadeRepeticoes.getText().toString());
+        if(!campoQuantidadeRepeticoes.getText().toString().isEmpty())
+            quantidadeRepeticoes = Integer.valueOf(campoQuantidadeRepeticoes.getText().toString());
     }
 
     @Override

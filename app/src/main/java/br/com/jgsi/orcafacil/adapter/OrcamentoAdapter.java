@@ -63,7 +63,7 @@ public class OrcamentoAdapter extends BaseAdapter{
             campoSaldo.setTextColor(Color.GREEN);
         }
         TextView campoData = (TextView) item.findViewById(R.id.item_orcamento_data);
-        if(campoData != null) campoData.setText(orcamento.getDataFormatada());
+        if(campoData != null) campoData.setText(orcamento.getPeriodo());
         TextView campoPeriodicidade = (TextView) item.findViewById(R.id.item_orcamento_periodicidade);
         if(campoPeriodicidade != null) campoPeriodicidade.setText(orcamento.getPeriodicidade().nome());
 

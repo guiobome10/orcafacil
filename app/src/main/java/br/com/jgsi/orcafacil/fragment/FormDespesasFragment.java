@@ -46,7 +46,9 @@ import br.com.jgsi.orcafacil.model.Despesa;
 import br.com.jgsi.orcafacil.model.Icone;
 import br.com.jgsi.orcafacil.model.Orcamento;
 import br.com.jgsi.orcafacil.model.Receita;
+import br.com.jgsi.orcafacil.util.DateFormatter;
 import br.com.jgsi.orcafacil.util.DateTimeMask;
+import br.com.jgsi.orcafacil.util.DateUtil;
 import br.com.jgsi.orcafacil.util.DecimalFormatter;
 import br.com.jgsi.orcafacil.util.DummyObjects;
 
@@ -95,12 +97,13 @@ public class FormDespesasFragment extends Fragment {
         campoData.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
+                despesa.setData(DateFormatter.formata(campoData.getText().toString()));
                 getOrcamentoDespesa();
             }
         });
 
         campoValor = (EditText) layout.findViewById(R.id.despesa_form_valor);
-        campoValor.setText(despesa.getValorFormatado());
+        //campoValor.setText(despesa.getValorFormatado());
         campoValor.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -253,6 +256,7 @@ public class FormDespesasFragment extends Fragment {
                     irParaCategoria.putExtra(getResources().getString(R.string.nova), true);
                     startActivityForResult(irParaCategoria, RequestCode.CATEGORIA_DESPESA_REQUEST_CODE);
                 }
+                campoValor.requestFocus();
             }
         });
 
@@ -278,10 +282,9 @@ public class FormDespesasFragment extends Fragment {
 
     private void atualizaCampoSaldoRestante() {
         if(orcamento != null) {
-            orcamento.setSaldo(orcamento.getSaldo() - despesa.getValor());
+            orcamento.setSaldo(orcamento.getValor() - despesa.getValor());
             campoSaldoRestante.setText(
-                    getContext().getResources().getString(R.string.saldo_restante_orcamento)
-                            + DecimalFormatter.formataDinheiro(orcamento.getSaldo()));
+                    getContext().getResources().getString(R.string.saldo_restante_orcamento) + orcamento.getSaldoFormatoDinheiro());
         } else {
             campoSaldoRestante.setText("    ");
         }
