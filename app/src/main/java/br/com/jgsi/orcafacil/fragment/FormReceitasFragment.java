@@ -107,6 +107,10 @@ public class FormReceitasFragment extends Fragment {
     }
 
     private void salvar() {
+        if(categoriaSelecionada == null || categoriaSelecionada.getId().equals(DummyObjects.getCategoriaReceita().getId())){
+            Toast.makeText(activity, R.string.campo_categoria_obrigatorio, Toast.LENGTH_LONG).show();
+            return;
+        }
         helper = new FormularioHelper(activity, R.layout.receita_form);
         if(helper.validaDadosForm()){
             Double valorAnteriorReceita = receita.getValor();

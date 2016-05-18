@@ -131,6 +131,10 @@ public class FormOrcamentosFragment extends Fragment {
     }
 
     private void salvar() {
+        if(categoriaSelecionada == null || categoriaSelecionada.getId().equals(DummyObjects.getCategoriaDespesa().getId())){
+            Toast.makeText(activity, R.string.campo_categoria_obrigatorio, Toast.LENGTH_LONG).show();
+            return;
+        }
         helper = new FormularioHelper(activity, R.layout.orcamento_form);
         orcamento = helper.pegaDadosForm(orcamento);
         if(helper.validaFormOrcamento(activity, orcamento)){

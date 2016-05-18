@@ -152,11 +152,7 @@ public class ListaDespesasFragment extends Fragment {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 dao = new DespesaDAO(activity);
-                ContaDAO contaDAO = new ContaDAO(activity);
-                despesa.getConta().deposita(despesa.getValor());
-                contaDAO.atualizar(despesa.getConta());
-                if(despesa.getOrcamento() != null){
-                    despesa.getOrcamento().deposita(despesa.getValor());
+                if(despesa.temOrcamentoVinculado()){
                     orcamentoDAO = new OrcamentoDAO(activity);
                     orcamentoDAO.atualizar(despesa.getOrcamento());
                 }

@@ -51,14 +51,6 @@ public class PrincipalActivity extends FragmentActivity {
         totalReceita = (TextView) findViewById(R.id.total_receita);
         totalDespesa = (TextView) findViewById(R.id.total_despesa);
         saldoDespesaXReceita = (TextView) findViewById(R.id.saldo_despesa_x_receita);
-        Button botaoDataBinding = (Button) findViewById(R.id.botao_data_binding);
-        botaoDataBinding.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent irParaDataBindingActivity = new Intent(PrincipalActivity.this, DataBindingActivity.class);
-                startActivity(irParaDataBindingActivity);
-            }
-        });
     }
 
     @Override

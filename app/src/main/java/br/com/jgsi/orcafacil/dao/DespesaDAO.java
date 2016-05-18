@@ -26,6 +26,7 @@ import br.com.jgsi.orcafacil.util.DateFormatter;
 public class DespesaDAO {
 
     private ContaDAO contaDAO;
+    private OrcamentoDAO orcamentoDAO;
     private DAO dao;
     private Context context;
 
@@ -90,21 +91,31 @@ public class DespesaDAO {
     public void inserir(Despesa despesa){
         dao.inserir(Tabelas.TB_DESPESA_NAME, toContentValues(despesa));
         despesa.getConta().saca(despesa.getValor());
-        this.contaDAO = new ContaDAO(context);
-        contaDAO.atualizar(despesa.getConta());
+        atualizaConta(despesa);
     }
 
     public void atualizar(Despesa despesa){
         dao.atualizar(Tabelas.TB_DESPESA_NAME, toContentValues(despesa), "id=?", new String[]{despesa.getId().toString()});
-        contaDAO = new ContaDAO(context);
         despesa.getConta().saca(despesa.getValor());
-        contaDAO.atualizar(despesa.getConta());
+        atualizaConta(despesa);
     }
 
     public void deletar(Despesa despesa){
+        despesa.preparaParaDeletar();
+        atualizaConta(despesa);
+        atualizaOrcamento(despesa);
         dao.deletar(Tabelas.TB_DESPESA_NAME, "id=?", new String[]{despesa.getId().toString()});
     }
 
+    private void atualizaOrcamento(Despesa despesa) {
+        orcamentoDAO = new OrcamentoDAO(context);
+        orcamentoDAO.atualizar(despesa.getOrcamento());
+    }
+
+    private void atualizaConta(Despesa despesa) {
+        contaDAO = new ContaDAO(context);
+        contaDAO.atualizar(despesa.getConta());
+    }
 
     private ContentValues toContentValues(Despesa despesa) {
         ContentValues cv = new ContentValues();

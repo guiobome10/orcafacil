@@ -138,4 +138,14 @@ public class Despesa implements Serializable, Cloneable {
             return  null;
         }
     }
+
+    public void preparaParaDeletar(){
+        conta.deposita(valor);
+        if(orcamento != null) orcamento.deposita(valor);
+    }
+
+    public boolean temOrcamentoVinculado(){
+        return orcamento !=null;
+    }
+
 }

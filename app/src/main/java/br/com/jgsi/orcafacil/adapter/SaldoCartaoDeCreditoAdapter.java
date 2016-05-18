@@ -54,7 +54,7 @@ public class SaldoCartaoDeCreditoAdapter extends BaseAdapter {
         TextView campoBandeira = (TextView) item.findViewById(R.id.item_cartao_bandeira);
         if(campoBandeira != null) campoBandeira.setText(cartao.getBandeira().toString());
         TextView campoSaldoFatura = (TextView) item.findViewById(R.id.item_cartao_valor_fatura_atual);
-        if(campoSaldoFatura != null) campoSaldoFatura.setText(cartao.getFaturaAtual().getValorFormatoDinheiro());
+        if(campoSaldoFatura != null && cartao.getFaturaAtual() != null) campoSaldoFatura.setText(cartao.getFaturaAtual().getValorFormatoDinheiro());
 
         return item;
 

@@ -312,6 +312,10 @@ public class FormularioHelper {
             return false;
         }
 
+        if(isCampoValorZerado()){
+            setErroCampo(campoValor, R.string.campo_valor_zerado);
+            return false;
+        }
         return true;
     }
 
